@@ -1,10 +1,9 @@
-```html
 <!DOCTYPE html>
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>পূর্ব কলকাতা জলাভূমি রক্ষক: Version 3</title>
+    <title>পূর্ব কলকাতা জলাভূমি রক্ষক: Version 6 (Competitive)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;800;900&display=swap" rel="stylesheet">
     <style>
@@ -15,13 +14,8 @@
 
         /* Prevent all scrolling */
         html, body {
-            margin: 0;
-            padding: 0;
-            width: 100vw;
-            height: 100dvh;
-            overflow: hidden;
-            touch-action: none;
-            user-select: none;
+            margin: 0; padding: 0; width: 100vw; height: 100dvh; 
+            overflow: hidden; touch-action: none; user-select: none;
             font-family: 'Noto Sans Bengali', sans-serif;
             background: linear-gradient(135deg, #e0f2fe 0%, #bbf7d0 100%);
         }
@@ -30,19 +24,13 @@
         .bg-element { position: fixed; border-radius: 50%; filter: blur(60px); z-index: -1; animation: float 10s infinite alternate ease-in-out; }
         .bg-1 { width: 300px; height: 300px; background: #38bdf8; top: -50px; left: -50px; }
         .bg-2 { width: 400px; height: 400px; background: #4ade80; bottom: -100px; right: -100px; animation-delay: -5s; }
-       
         @keyframes float { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(30px, 50px) scale(1.1); } }
-       
-        /* Glassmorphism UI */
+        
         .glass-panel {
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 4px 16px 0 rgba(31, 38, 135, 0.1);
+            background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border); box-shadow: 0 4px 16px 0 rgba(31, 38, 135, 0.1);
         }
 
-        /* Screen Shake */
         @keyframes shake {
             0% { transform: translate(1px, 1px) rotate(0deg); }
             20% { transform: translate(-3px, 0px) rotate(1deg); }
@@ -52,7 +40,7 @@
             100% { transform: translate(0, 0) rotate(0deg); }
         }
         .shake-screen { animation: shake 0.5s; }
-       
+        
         #pollutionOverlay {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(0,0,0,0.6); z-index: 40; pointer-events: none;
@@ -61,16 +49,16 @@
 
         /* 3D Dice Styling */
         .scene { width: 60px; height: 60px; perspective: 600px; cursor: pointer; position: relative; }
-        .cube {
-            width: 100%; height: 100%; position: relative; transform-style: preserve-3d;
-            transform: translateZ(-30px) rotateX(-15deg) rotateY(15deg);
+        .cube { 
+            width: 100%; height: 100%; position: relative; transform-style: preserve-3d; 
+            transform: translateZ(-30px) rotateX(-15deg) rotateY(15deg); 
             transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
         }
-        .cube__face {
-            position: absolute; width: 60px; height: 60px; background: white;
-            border: 2px solid #e5e7eb; border-radius: 8px; display: flex;
-            align-items: center; justify-content: center; font-size: 36px;
-            color: #16a34a; box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+        .cube__face { 
+            position: absolute; width: 60px; height: 60px; background: white; 
+            border: 2px solid #e5e7eb; border-radius: 8px; display: flex; 
+            align-items: center; justify-content: center; font-size: 36px; 
+            color: #16a34a; box-shadow: inset 0 0 10px rgba(0,0,0,0.1); 
         }
         .cube__face--front  { transform: rotateY(  0deg) translateZ(30px); }
         .cube__face--right  { transform: rotateY( 90deg) translateZ(30px); }
@@ -82,56 +70,36 @@
         .popup-anim { animation: popupSpring 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; transform: scale(0); }
         @keyframes popupSpring { to { transform: scale(1); } }
 
-        /* Conservation Meters: Brown to Blue transition */
+        /* Conservation Meters */
         .meter-container { height: 10px; background: #e5e7eb; border-radius: 5px; overflow: hidden; position: relative; margin-top: 2px;}
-        .meter-fill {
-            height: 100%; width: 0%; transition: width 0.5s ease;
+        .meter-fill { 
+            height: 100%; width: 0%; transition: width 0.5s ease; 
             background: linear-gradient(90deg, #78350f 0%, #b45309 30%, #38bdf8 70%, #1d4ed8 100%);
         }
 
-        .timeline-container { position: relative; width: 100%; height: 22px; margin-bottom: 2px; }
+        .timeline-container { position: relative; width: 100%; height: 20px; margin-bottom: 2px; }
         .badge-icon {
-            position: absolute; bottom: 0; transform: translateX(-50%); font-size: 1rem;
+            position: absolute; bottom: 0; transform: translateX(-50%); font-size: 11px;
             filter: grayscale(100%); opacity: 0.3; transition: all 0.4s; z-index: 5;
         }
         .badge-icon.active {
-            filter: grayscale(0%); opacity: 1; transform: translateX(-50%) scale(1.3);
-            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            filter: grayscale(0%); opacity: 1; transform: translateX(-50%) scale(1.6);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3); z-index: 10;
         }
 
-        /* Leaderboard active player glow */
         .player-card { transition: all 0.3s; opacity: 0.6; filter: grayscale(50%); padding: 6px 10px; border-radius: 12px; }
         .player-card.active-turn { opacity: 1; filter: grayscale(0%); box-shadow: 0 0 10px rgba(34, 197, 94, 0.4); border-color: #4ade80; background: rgba(255,255,255,0.95); }
-       
+        
         .dice-glow { animation: pulse-glow 1.5s infinite; border-radius: 8px;}
         @keyframes pulse-glow { 0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(34, 197, 94, 0); } 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); } }
 
-        /* Board Sizing */
-        #gameBoard {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            border-radius: 12px;
-            background: white;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-        }
+        #gameBoard { width: 100%; height: 100%; object-fit: contain; border-radius: 12px; background: white; box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
 
-        /* Cinematic Background Text */
         .bg-huge-text {
-            position: absolute;
-            font-size: 25vw;
-            color: rgba(255,255,255,0.1);
-            font-weight: 900;
-            white-space: nowrap;
-            transform: rotate(-15deg);
-            animation: pulse-bg 4s infinite alternate;
-            z-index: 0;
-            pointer-events: none;
+            position: absolute; font-size: 25vw; color: rgba(255,255,255,0.1); font-weight: 900;
+            white-space: nowrap; transform: rotate(-15deg); animation: pulse-bg 4s infinite alternate; z-index: 0; pointer-events: none;
         }
-        @keyframes pulse-bg {
-            0% { transform: rotate(-15deg) scale(1); opacity: 0.1; }
-            100% { transform: rotate(-15deg) scale(1.1); opacity: 0.2; }
-        }
+        @keyframes pulse-bg { 0% { transform: rotate(-15deg) scale(1); opacity: 0.1; } 100% { transform: rotate(-15deg) scale(1.1); opacity: 0.2; } }
     </style>
 </head>
 <body class="flex flex-col h-[100dvh]">
@@ -140,9 +108,9 @@
     <div class="bg-element bg-2"></div>
     <div id="pollutionOverlay"></div>
 
-    <!-- 1. TOP HUD (Leaderboard) -->
+    <!-- TOP HUD -->
     <header class="flex-shrink-0 w-full p-2 z-10 flex gap-2" id="leaderboard">
-        <!-- P1 -->
+        <!-- Player 1 -->
         <div id="p1Card" class="glass-panel border-2 player-card flex-1 flex flex-col justify-center">
             <div class="flex justify-between items-center mb-1">
                 <div class="flex items-center gap-1 overflow-hidden">
@@ -152,11 +120,16 @@
                 <span class="font-black text-blue-600 text-sm" id="p1Index">০%</span>
             </div>
             <div class="timeline-container">
-                <span class="badge-icon" style="left: 20%;" id="p1_badge_20">💧</span>
-                <span class="badge-icon" style="left: 40%;" id="p1_badge_40">🐟</span>
-                <span class="badge-icon" style="left: 60%;" id="p1_badge_60">☔</span>
-                <span class="badge-icon" style="left: 80%;" id="p1_badge_80">🦆</span>
-                <span class="badge-icon" style="left: 100%;" id="p1_badge_100">🧑‍🌾</span>
+                <span class="badge-icon" style="left: 10%;" id="p1_badge_10" title="অবৈধ ভরাট বন্ধ">🛑</span>
+                <span class="badge-icon" style="left: 20%;" id="p1_badge_20" title="খাল পরিষ্কার">🧹</span>
+                <span class="badge-icon" style="left: 30%;" id="p1_badge_30" title="জল পরিষ্কার">💧</span>
+                <span class="badge-icon" style="left: 40%;" id="p1_badge_40" title="মাছের সংখ্যা বৃদ্ধি">🐟</span>
+                <span class="badge-icon" style="left: 50%;" id="p1_badge_50" title="পাখির প্রত্যাবর্তন">🦆</span>
+                <span class="badge-icon" style="left: 60%;" id="p1_badge_60" title="জীববৈচিত্র্য">🌿</span>
+                <span class="badge-icon" style="left: 70%;" id="p1_badge_70" title="প্লাস্টিকমুক্ত">♻️</span>
+                <span class="badge-icon" style="left: 80%;" id="p1_badge_80" title="জীবিকা">🧑‍🌾</span>
+                <span class="badge-icon" style="left: 90%;" id="p1_badge_90" title="জনসচেতনতা">📢</span>
+                <span class="badge-icon" style="left: 100%;" id="p1_badge_100" title="সম্পূর্ণ">🏆</span>
             </div>
             <div class="meter-container"><div class="meter-fill" id="p1Meter"></div></div>
         </div>
@@ -166,7 +139,7 @@
             <div class="bg-white/80 rounded-full w-6 h-6 flex items-center justify-center font-black text-gray-400 shadow-sm text-[10px]">VS</div>
         </div>
 
-        <!-- P2 -->
+        <!-- Player 2 -->
         <div id="p2Card" class="glass-panel border-2 player-card flex-1 flex flex-col justify-center">
             <div class="flex justify-between items-center mb-1">
                 <div class="flex items-center gap-1 overflow-hidden flex-row-reverse sm:flex-row">
@@ -176,25 +149,28 @@
                 <span class="font-black text-blue-600 text-sm" id="p2Index">০%</span>
             </div>
             <div class="timeline-container">
-                <span class="badge-icon" style="left: 20%;" id="p2_badge_20">💧</span>
-                <span class="badge-icon" style="left: 40%;" id="p2_badge_40">🐟</span>
-                <span class="badge-icon" style="left: 60%;" id="p2_badge_60">☔</span>
-                <span class="badge-icon" style="left: 80%;" id="p2_badge_80">🦆</span>
-                <span class="badge-icon" style="left: 100%;" id="p2_badge_100">🧑‍🌾</span>
+                <span class="badge-icon" style="left: 10%;" id="p2_badge_10" title="অবৈধ ভরাট বন্ধ">🛑</span>
+                <span class="badge-icon" style="left: 20%;" id="p2_badge_20" title="খাল পরিষ্কার">🧹</span>
+                <span class="badge-icon" style="left: 30%;" id="p2_badge_30" title="জল পরিষ্কার">💧</span>
+                <span class="badge-icon" style="left: 40%;" id="p2_badge_40" title="মাছের সংখ্যা বৃদ্ধি">🐟</span>
+                <span class="badge-icon" style="left: 50%;" id="p2_badge_50" title="পাখির প্রত্যাবর্তন">🦆</span>
+                <span class="badge-icon" style="left: 60%;" id="p2_badge_60" title="জীববৈচিত্র্য">🌿</span>
+                <span class="badge-icon" style="left: 70%;" id="p2_badge_70" title="প্লাস্টিকমুক্ত">♻️</span>
+                <span class="badge-icon" style="left: 80%;" id="p2_badge_80" title="জীবিকা">🧑‍🌾</span>
+                <span class="badge-icon" style="left: 90%;" id="p2_badge_90" title="জনসচেতনতা">📢</span>
+                <span class="badge-icon" style="left: 100%;" id="p2_badge_100" title="সম্পূর্ণ">🏆</span>
             </div>
             <div class="meter-container"><div class="meter-fill" id="p2Meter"></div></div>
         </div>
     </header>
 
-    <!-- 2. MIDDLE AREA (Game Board takes all remaining space) -->
+    <!-- MIDDLE BOARD -->
     <main class="flex-1 min-h-0 w-full flex justify-center items-center p-2 z-0 relative">
         <canvas id="gameBoard" width="800" height="800" class="aspect-square max-w-full max-h-full"></canvas>
     </main>
 
-    <!-- 3. BOTTOM CONTROLS (Footer) -->
+    <!-- BOTTOM CONTROLS -->
     <footer class="flex-shrink-0 w-full glass-panel rounded-b-none border-t border-white/50 p-3 flex justify-between items-center z-10 shadow-[0_-5px_15px_rgba(0,0,0,0.05)]">
-       
-        <!-- Turn Indicator -->
         <div class="w-1/3 flex flex-col justify-center">
             <div class="text-[10px] text-gray-500 font-bold mb-1">এখন চাল</div>
             <div class="flex items-center gap-2">
@@ -203,7 +179,6 @@
             </div>
         </div>
 
-        <!-- Dice Area (Clickable) -->
         <div class="w-1/3 flex flex-col items-center justify-center relative">
             <div class="scene" id="diceScene" onclick="handleDiceClick()">
                 <div class="cube" id="diceCube">
@@ -215,11 +190,9 @@
                     <div class="cube__face cube__face--bottom">⚄</div>
                 </div>
             </div>
-            <!-- Counting Output -->
             <div id="countingDisplay" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/95 text-xl px-4 py-2 rounded-full font-black text-green-600 shadow-lg opacity-0 pointer-events-none transition-opacity z-20 whitespace-nowrap"></div>
         </div>
 
-        <!-- Restart -->
         <div class="w-1/3 flex justify-end items-center pr-2">
             <button onclick="location.reload()" class="bg-white/80 hover:bg-white text-gray-700 p-3 rounded-full shadow-md border border-gray-200 transition active:scale-90 flex items-center justify-center" title="নতুন খেলা">
                 <span class="text-2xl leading-none">🔄</span>
@@ -234,8 +207,8 @@
     <div id="startModal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
         <div class="glass-panel p-6 sm:p-8 max-w-sm w-full text-center popup-anim bg-white/95 max-h-[90vh] overflow-y-auto">
             <h2 class="text-3xl sm:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-blue-600 mb-2">জলাভূমি রক্ষক</h2>
-            <p class="text-gray-600 mb-6 font-semibold text-sm">EKW বাঁচাতে ৫টি ধাপ খেলুন!</p>
-           
+            <p class="text-gray-600 mb-6 font-semibold text-sm">EKW বাঁচাতে প্রতিযোগিতামূলক খেলা!</p>
+            
             <div id="step1">
                 <div class="space-y-3">
                     <button onclick="goToStep2(1)" class="w-full bg-blue-500 text-white font-bold py-3 px-4 rounded-xl text-lg shadow hover:bg-blue-600 transition flex items-center justify-center gap-2">
@@ -255,25 +228,29 @@
         </div>
     </div>
 
-    <!-- Intro / Readiness Modal -->
+    <!-- Intro Modal (Explaining new rules) -->
     <div id="introModal" class="fixed inset-0 bg-black/80 z-50 hidden items-center justify-center p-4 backdrop-blur-md">
-        <div class="glass-panel p-6 sm:p-8 max-w-lg w-full text-center popup-anim bg-white/95 max-h-[90vh] overflow-y-auto border-t-8 border-blue-500">
-            <h2 class="text-2xl font-black text-blue-800 mb-4">পূর্ব কলকাতা জলাভূমির গুরুত্ব</h2>
-            <p class="text-gray-700 font-medium mb-4 text-sm text-left leading-relaxed">পূর্ব কলকাতা জলাভূমি (EKW) আমাদের শহরের ফুসফুস এবং কিডনি। এটি রোজ প্রাকৃতিকভাবে শহরের নর্দমার জল পরিষ্কার করে এবং অতিরিক্ত জল ধরে রেখে আমাদের বন্যা থেকে বাঁচায়।</p>
-           
-            <div class="bg-blue-50/80 rounded-xl p-4 mb-6 text-left border border-blue-100 shadow-inner">
-                <h3 class="font-bold text-blue-900 mb-3 border-b border-blue-200 pb-2">জলাভূমি রক্ষায় ৫টি ধাপ:</h3>
-                <ul class="text-sm space-y-3 text-gray-800 font-semibold">
-                    <li class="flex items-center gap-2"><span>💧</span> ১. জল পরিষ্কার রাখা</li>
-                    <li class="flex items-center gap-2"><span>🐟</span> ২. খাদ্য উৎপাদনে সাহায্য</li>
-                    <li class="flex items-center gap-2"><span>☔</span> ৩. বন্যা নিয়ন্ত্রণ</li>
-                    <li class="flex items-center gap-2"><span>🦆</span> ৪. জীববৈচিত্র্য রক্ষা</li>
-                    <li class="flex items-center gap-2"><span>🧑‍🌾</span> ৫. জীবিকা ও অর্থনীতি বাঁচানো</li>
+        <div class="glass-panel p-6 sm:p-8 max-w-lg w-full text-center popup-anim bg-white/95 max-h-[95vh] overflow-y-auto border-t-8 border-blue-500">
+            <h2 class="text-xl font-black text-blue-800 mb-2">প্রতিযোগিতামূলক নিয়মকানুন</h2>
+            <p class="text-gray-700 font-medium mb-3 text-sm text-left leading-relaxed">
+                এই খেলায় ৯টি মাইলস্টোন আছে। যে আগে মাইলস্টোনের ঘরে পৌঁছাবে, সে সেটি দখল করবে! অন্যজন আর সেটি পাবে না।
+            </p>
+            <p class="text-red-600 font-bold mb-4 text-sm text-left leading-relaxed">
+                ⚠️ তবে সাবধান! সাপের মুখে পড়ে নিচে নামলে আপনার অর্জিত মাইলস্টোন হাতছাড়া হয়ে যাবে এবং অন্যজনের জন্য উন্মুক্ত হয়ে যাবে!
+            </p>
+            
+            <div class="bg-yellow-50 rounded-xl p-3 mb-5 text-left border border-yellow-200 shadow-inner">
+                <h3 class="font-bold text-yellow-800 mb-2 border-b border-yellow-200 pb-1 text-sm">১০০ ঘরে পৌঁছালে বিশেষ উপাধি:</h3>
+                <ul class="text-xs space-y-2 text-gray-800 font-semibold">
+                    <li><span class="text-lg">👑</span> ৮ বা তার বেশি: <span class="text-green-700">পূর্ব কলকাতা জলাভূমির মহারক্ষক 🌿🏆</span></li>
+                    <li><span class="text-lg">🥇</span> ৬ বা ৭টি: <span class="text-blue-600">জলাভূমির নায়ক</span></li>
+                    <li><span class="text-lg">🥈</span> ৪ বা ৫টি: <span class="text-indigo-600">প্রকৃতির অভিভাবক</span></li>
+                    <li><span class="text-lg">🥉</span> ২ বা ৩টি: <span class="text-orange-600">নবীন জলাভূমি রক্ষক</span></li>
+                    <li><span class="text-lg">🌱</span> ২-এর কম: <span class="text-gray-600">পরিবেশ বন্ধু</span></li>
                 </ul>
             </div>
-           
-            <h3 class="text-xl font-black text-green-700 mb-5">EKW বাঁচাতে তুমি কি তৈরি?</h3>
-            <button onclick="startGame()" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white font-black py-4 px-8 rounded-xl shadow-lg hover:scale-105 transition text-xl">রাজি 👍</button>
+            
+            <button onclick="startGame()" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white font-black py-3 px-8 rounded-xl shadow-lg hover:scale-105 transition text-lg">খেলা শুরু হোক! 👍</button>
         </div>
     </div>
 
@@ -281,67 +258,69 @@
     <div id="knowledgeCard" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 backdrop-blur-sm hidden">
         <div class="glass-panel p-6 max-w-xs w-full text-center bg-white popup-anim border-t-8 relative overflow-hidden" id="kcBox">
             <div class="absolute top-0 right-0 -mr-6 -mt-6 text-7xl opacity-10" id="kcBgIcon">💡</div>
-            <h3 class="text-lg font-black mb-2 flex items-center justify-center gap-2" id="kcTitle">
-                <span>💡</span> আপনি কি জানেন?
-            </h3>
+            <h3 class="text-lg font-black mb-2 flex items-center justify-center gap-2" id="kcTitle"><span>💡</span> আপনি কি জানেন?</h3>
             <p id="knowledgeText" class="text-gray-700 font-semibold mb-4 text-sm leading-relaxed">...</p>
             <button onclick="closeKnowledgeCard()" class="w-full bg-gray-800 text-white font-bold py-2 rounded-xl shadow hover:bg-gray-900 transition">এগিয়ে চলুন</button>
         </div>
     </div>
 
-    <!-- Milestone Modal -->
+    <!-- Milestone Claim/Loss Modal -->
     <div id="milestoneModal" class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 backdrop-blur-md hidden">
-        <div class="glass-panel p-5 w-full max-w-sm text-center bg-gradient-to-b from-yellow-50 to-white popup-anim border-t-8 border-yellow-500 shadow-2xl">
-            <div class="bg-yellow-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-2 shadow-inner">
-                <span class="text-4xl">🏆</span>
+        <div class="glass-panel p-5 w-full max-w-sm text-center bg-white popup-anim border-t-8 shadow-2xl" id="msModalBox">
+            <div id="msIconBox" class="rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-2 shadow-inner">
+                <span class="text-4xl" id="msMainIcon">🏆</span>
             </div>
-            <h2 id="milestonePlayerName" class="text-lg font-bold text-gray-800 mb-1 border-b-2 border-yellow-200 pb-1"></h2>
-            <h3 class="text-xl font-black text-yellow-600 mb-3">নতুন লক্ষ্য অর্জিত!</h3>
-           
+            <h2 id="msPlayerName" class="text-lg font-bold text-gray-800 mb-1 border-b-2 pb-1"></h2>
+            <h3 class="text-xl font-black mb-3" id="msTitleText">নতুন লক্ষ্য অর্জিত!</h3>
+            
             <div id="milestoneList" class="space-y-2 mb-4 text-left max-h-48 overflow-y-auto pr-1"></div>
-           
-            <button onclick="closeMilestoneCard()" class="w-full bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-bold py-2 rounded-xl shadow-lg hover:scale-105 transition text-base">অসাধারণ!</button>
+            
+            <button onclick="closeMilestoneCard()" id="msBtn" class="w-full text-white font-bold py-2 rounded-xl shadow-lg hover:scale-105 transition text-base">অসাধারণ!</button>
         </div>
     </div>
 
     <!-- Cinematic End Screen -->
     <div id="cinematicEnd" class="fixed inset-0 z-[100] bg-gradient-to-b from-green-500 to-green-700 hidden flex-col items-center justify-center opacity-0 transition-opacity duration-1000 overflow-hidden">
         <div class="bg-huge-text">অভিনন্দন!</div>
-        <h1 class="text-6xl sm:text-8xl font-black text-white drop-shadow-2xl mb-6 popup-anim z-10 text-center px-4">অভিনন্দন! 🎉</h1>
-       
+        <h1 class="text-6xl sm:text-7xl font-black text-white drop-shadow-2xl mb-4 popup-anim z-10 text-center px-4">অভিনন্দন! 🎉</h1>
+        
         <div class="glass-panel p-6 max-w-md w-11/12 text-center bg-white/20 border-white/40 z-10 shadow-2xl max-h-[85vh] overflow-y-auto">
-            <div class="text-7xl mb-4 drop-shadow-md" id="winnerIcon">🦸‍♂️</div>
-            <h2 class="text-3xl font-bold text-white mb-4 drop-shadow-md"><span id="winnerName">আপনি</span> জয়ী হয়েছেন!</h2>
-           
-            <div class="bg-white/95 rounded-xl p-4 mb-5 shadow-xl text-left border-l-8 border-blue-500">
-                <h3 class="text-blue-900 font-bold text-lg mb-1 flex items-center gap-2"><span>🏆</span> লক্ষ্য ৫: জীবিকা ও অর্থনীতি</h3>
-                <p class="text-gray-700 font-medium text-sm leading-relaxed">হাজার হাজার মানুষ মাছ চাষ, কৃষিকাজ ও সংশ্লিষ্ট পেশার মাধ্যমে জীবিকা নির্বাহ করেন। পূর্ব কলকাতা জলাভূমি আমাদের অমূল্য সম্পদ!</p>
+            <div class="text-6xl mb-3 drop-shadow-md" id="winnerIcon">🦸‍♂️</div>
+            <h2 class="text-2xl font-bold text-white mb-3 drop-shadow-md"><span id="winnerName">আপনি</span> ১০০ ঘরে পৌঁছেছেন!</h2>
+            
+            <div class="bg-white/95 rounded-xl p-5 mb-5 shadow-xl text-center border-t-8 border-yellow-400">
+                <p class="text-gray-600 font-bold text-sm mb-1" id="winBadgeDesc">আপনি ৫টি মাইলস্টোন ধরে রেখেছেন!</p>
+                <h3 class="text-xl sm:text-2xl font-black text-yellow-600" id="winBadgeTitle">উপাধি</h3>
             </div>
-           
-            <p class="text-white text-base font-bold leading-relaxed drop-shadow-md mb-6">
-                আপনার সংরক্ষণের ৫টি ধাপ সফল হয়েছে। প্রকৃতি রক্ষার এই দায়িত্ব বাস্তব জীবনেও পালন করুন।
+            
+            <p class="text-white text-sm font-bold leading-relaxed drop-shadow-md mb-6">
+                প্রকৃতি রক্ষার এই দায়িত্ব বাস্তব জীবনেও পালন করুন।
             </p>
-           
+            
             <button onclick="location.reload()" class="bg-white text-green-700 font-black py-3 px-8 rounded-full shadow-[0_0_15px_rgba(255,255,255,0.5)] hover:scale-105 transition text-lg">আবার খেলুন</button>
         </div>
     </div>
 
     <script>
-        // --- GAME DATA & CONFIGURATION ---
         const canvas = document.getElementById('gameBoard');
         const ctx = canvas.getContext('2d');
-        const GAME_SIZE = 800;
+        const GAME_SIZE = 800; 
         const TILE = GAME_SIZE / 10;
-       
-        let gameMode = 1;
+        
+        let gameMode = 1; 
         let isMoving = false;
         let isGameOver = false;
         let currentPlayerIndex = 0;
-        let selectingPlayer = 1;
-       
-        // Convert to Bengali Numerals
+        let selectingPlayer = 1; 
+        
+        // Competitive Milestone State (null means unclaimed, 1 = P1, 2 = P2)
+        let milestoneState = {
+            10: null, 20: null, 30: null, 40: null, 50: null, 
+            60: null, 70: null, 80: null, 90: null
+        };
+
         const toBnNum = (num) => {
-            const bnDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+            const bnDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯']; 
             return num.toString().split('').map(d => bnDigits[d] || d).join('');
         };
 
@@ -349,7 +328,7 @@
             8: { end: 31, msg: 'জনসচেতনতা বৃদ্ধি!', type: 'save', fact: "মানুষকে সচেতন করে পরিবেশ বাঁচানো হলো।" },
             21: { end: 58, msg: 'দূষণ নিয়ন্ত্রণ!', type: 'save', fact: "বর্জ্য ও প্লাস্টিক ফেলা বন্ধ হলো।" },
             36: { end: 67, msg: 'জীববৈচিত্র্য সংরক্ষণ!', type: 'save', fact: "পাখি ও মাছের আবাসস্থল রক্ষা পেল।" },
-50: { end: 82, msg: 'বৈজ্ঞানিক ব্যবস্থাপনা!', type: 'save', fact: "সঠিক পর্যবেক্ষণে জলাভূমি সুস্থ আছে।" },
+            50: { end: 82, msg: 'বৈজ্ঞানিক ব্যবস্থাপনা!', type: 'save', fact: "সঠিক পর্যবেক্ষণে জলাভূমি সুস্থ আছে।" },
             71: { end: 92, msg: 'অবৈধ ভরাট বন্ধ!', type: 'save', fact: "কঠোর আইনে নির্মাণ কাজ বন্ধ হলো।" }
         };
 
@@ -362,10 +341,15 @@
         };
 
         const ekwGoals = {
-            20: { title: "লক্ষ্য ১: জল পরিষ্কার", icon: "💧", text: "প্রাকৃতিকভাবে নর্দমার জল পরিশোধন করে দূষণ কমায়।" },
-            40: { title: "লক্ষ্য ২: খাদ্য উৎপাদন", icon: "🐟", text: "মাছ ও শাকসবজি চাষ মানুষের খাদ্যের যোগান দেয়।" },
-            60: { title: "লক্ষ্য ৩: বন্যা নিয়ন্ত্রণ", icon: "☔", text: "অতিরিক্ত বৃষ্টির জল ধরে রেখে শহরের বন্যা কমায়।" },
-            80: { title: "লক্ষ্য ৪: জীববৈচিত্র্য", icon: "🦆", text: "বহু প্রজাতির মাছ, পাখি ও জলজ উদ্ভিদের আশ্রয়স্থল।" }
+            10: { title: "অবৈধ ভরাট বন্ধ", icon: "🛑", text: "জলাভূমি ভরাট সম্পূর্ণভাবে বন্ধ করা হয়েছে।" },
+            20: { title: "খাল পরিষ্কার", icon: "🧹", text: "জলের স্বাভাবিক প্রবাহের জন্য খালগুলো পরিষ্কার করা হয়েছে।" },
+            30: { title: "জল পরিষ্কার", icon: "💧", text: "দূষিত জল প্রাকৃতিকভাবে পরিশোধন করা সম্ভব হচ্ছে।" },
+            40: { title: "মাছের সংখ্যা বৃদ্ধি", icon: "🐟", text: "পরিষ্কার জলে দেশীয় মাছের সংখ্যা বৃদ্ধি পেয়েছে।" },
+            50: { title: "পাখির প্রত্যাবর্তন", icon: "🦆", text: "নিরাপদ পরিবেশ পেয়ে পরিযায়ী পাখিরা আবার ফিরে আসছে।" },
+            60: { title: "জীববৈচিত্র্য পুনরুদ্ধার", icon: "🌿", text: "জলজ উদ্ভিদ ও প্রাণীদের নিরাপদ আবাসস্থল গড়ে উঠেছে।" },
+            70: { title: "প্লাস্টিকমুক্ত জলাভূমি", icon: "♻️", text: "প্লাস্টিক দূষণ রোধ করে পরিবেশকে সুস্থ রাখা হয়েছে।" },
+            80: { title: "জীবিকা সুরক্ষিত", icon: "🧑‍🌾", text: "স্থানীয় কৃষক ও জেলেদের জীবিকা সুরক্ষিত হয়েছে।" },
+            90: { title: "জনসচেতনতা", icon: "📢", text: "১০০% মানুষ জলাভূমির গুরুত্ব বুঝতে পেরেছেন।" }
         };
 
         const roles = [
@@ -378,11 +362,11 @@
         ];
 
         let players = [
-            { id: 1, pos: 0, icon: '👨‍🔬', name: 'খেলোয়াড় ১', x: 0, y: GAME_SIZE, targetX: 0, targetY: GAME_SIZE, goalsShowed: [] },
-            { id: 2, pos: 0, icon: '🤖', name: 'কম্পিউটার', x: 0, y: GAME_SIZE, targetX: 0, targetY: GAME_SIZE, goalsShowed: [] }
+            { id: 1, pos: 0, icon: '👨‍🔬', name: 'খেলোয়াড় ১', x: 0, y: GAME_SIZE, targetX: 0, targetY: GAME_SIZE },
+            { id: 2, pos: 0, icon: '🤖', name: 'কম্পিউটার', x: 0, y: GAME_SIZE, targetX: 0, targetY: GAME_SIZE }
         ];
 
-        // --- AUDIO SYSTEM ---
+        // --- AUDIO ---
         let actx;
         function initAudio() {
             try {
@@ -394,17 +378,12 @@
         function playTone(freq, type, duration, vol = 0.1, slideFreq = null) {
             try {
                 if (!actx) return;
-                const osc = actx.createOscillator();
-                const gain = actx.createGain();
-                osc.type = type;
-                osc.connect(gain);
-                gain.connect(actx.destination);
-               
+                const osc = actx.createOscillator(); const gain = actx.createGain();
+                osc.type = type; osc.connect(gain); gain.connect(actx.destination);
                 osc.frequency.setValueAtTime(freq, actx.currentTime);
                 if (slideFreq) osc.frequency.exponentialRampToValueAtTime(slideFreq, actx.currentTime + duration);
                 gain.gain.setValueAtTime(vol, actx.currentTime);
                 gain.gain.exponentialRampToValueAtTime(0.01, actx.currentTime + duration);
-               
                 osc.start(); osc.stop(actx.currentTime + duration);
             } catch(e) {}
         }
@@ -415,10 +394,11 @@
             climb: () => { playTone(400, 'sine', 0.2, 0.1, 800); setTimeout(()=>playTone(600, 'sine', 0.4, 0.1, 1200), 200); },
             fall: () => { playTone(300, 'sawtooth', 0.4, 0.1, 100); document.body.classList.add('shake-screen'); setTimeout(()=>document.body.classList.remove('shake-screen'),500); },
             goal: () => { playTone(440, 'sine', 0.1, 0.1); setTimeout(()=>playTone(554, 'sine', 0.1, 0.1), 100); setTimeout(()=>playTone(659, 'sine', 0.3, 0.1), 200); },
+            loss: () => { playTone(300, 'square', 0.2, 0.1, 200); setTimeout(()=>playTone(200, 'square', 0.3, 0.1, 100), 200); },
             win: () => { playTone(523.25, 'sine', 0.2, 0.2); setTimeout(()=>playTone(659.25, 'sine', 0.2, 0.2), 200); setTimeout(()=>playTone(783.99, 'sine', 0.4, 0.2, 1046.50), 400); }
         };
 
-        // --- UI & ROLE SELECTION ---
+        // --- UI ---
         function goToStep2(mode) {
             initAudio(); gameMode = mode;
             document.getElementById('step1').classList.add('hidden');
@@ -432,7 +412,7 @@
             roles.forEach((role, index) => {
                 let isPicked = (selectingPlayer === 2 && players[0].icon === role.icon);
                 iconGrid.innerHTML += `
-                    <div onclick="if(!${isPicked}) selectRole(${index})"
+                    <div onclick="if(!${isPicked}) selectRole(${index})" 
                          class="icon-btn flex items-center gap-2 bg-gray-50 p-2 rounded-xl border-2 border-gray-200 hover:bg-green-50 ${isPicked ? 'opacity-50 pointer-events-none' : ''}">
                         <span class="text-2xl">${role.icon}</span>
                         <span class="font-bold text-xs text-gray-700">${role.name}</span>
@@ -464,14 +444,13 @@
         function showIntroModal() {
             document.getElementById('startModal').style.display = 'none';
             let intro = document.getElementById('introModal');
-            intro.classList.remove('hidden');
-            intro.classList.add('flex');
+            intro.classList.remove('hidden'); intro.classList.add('flex');
         }
 
         function startGame() {
             document.getElementById('introModal').classList.add('hidden');
             document.getElementById('introModal').classList.remove('flex');
-           
+            
             document.getElementById('p1Icon').innerText = players[0].icon;
             document.getElementById('p1Name').innerText = players[0].name;
             document.getElementById('p2Icon').innerText = players[1].icon;
@@ -483,25 +462,25 @@
             if(cell === 0) return { x: 0, y: GAME_SIZE };
             let row = Math.floor((cell - 1) / 10);
             let col = (cell - 1) % 10;
-            if (row % 2 !== 0) col = 9 - col;
+            if (row % 2 !== 0) col = 9 - col; 
             return { x: col * TILE + TILE / 2, y: GAME_SIZE - (row * TILE + TILE / 2) };
         }
 
-        // --- DRAWING ---
+        // --- DRAW BOARD ---
         function drawBoard() {
             ctx.clearRect(0, 0, GAME_SIZE, GAME_SIZE);
             for(let i = 1; i <= 100; i++) {
                 let row = Math.floor((i - 1) / 10); let col = (i - 1) % 10;
                 let isAlt = (row + col) % 2 === 0;
-                ctx.fillStyle = isAlt ? '#dcfce7' : '#f0fdf4';
-                if([20,40,60,80].includes(i)) ctx.fillStyle = '#fef08a';
-                if(i === 100) ctx.fillStyle = '#bfdbfe';
+                ctx.fillStyle = isAlt ? '#dcfce7' : '#f0fdf4'; 
+                if(i % 10 === 0 && i !== 100) ctx.fillStyle = '#fef08a'; 
+                if(i === 100) ctx.fillStyle = '#bfdbfe'; 
 
                 let pos = getCellPos(i);
                 ctx.fillRect(pos.x - TILE/2, pos.y - TILE/2, TILE, TILE);
                 ctx.strokeStyle = '#bbf7d0'; ctx.lineWidth = 2;
                 ctx.strokeRect(pos.x - TILE/2, pos.y - TILE/2, TILE, TILE);
-               
+                
                 ctx.fillStyle = '#166534'; ctx.font = 'bold 24px "Noto Sans Bengali", sans-serif';
                 ctx.textAlign = 'left'; ctx.textBaseline = 'top';
                 ctx.fillText(toBnNum(i), pos.x - TILE/2 + 8, pos.y - TILE/2 + 8);
@@ -515,13 +494,13 @@
                 if(p.pos > 0) {
                     ctx.fillStyle = 'rgba(0,0,0,0.3)'; ctx.beginPath();
                     ctx.ellipse(p.x, p.y + 18, 20, 6, 0, 0, Math.PI * 2); ctx.fill();
-                   
+                    
                     ctx.fillStyle = '#ffffff'; ctx.beginPath();
                     ctx.arc(p.x, p.y, 22, 0, Math.PI * 2); ctx.fill();
-                   
+                    
                     ctx.lineWidth = 3; ctx.strokeStyle = p.id === 1 ? '#3b82f6' : '#ef4444'; ctx.stroke();
                     ctx.font = '28px sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-                    ctx.fillStyle = '#000000'; ctx.fillText(p.icon, p.x, p.y + 2);
+                    ctx.fillStyle = '#000000'; ctx.fillText(p.icon, p.x, p.y + 2); 
                 }
             });
         }
@@ -553,12 +532,27 @@
             document.getElementById('p2Index').innerText = toBnNum(p2.pos) + '%';
             document.getElementById('p2Meter').style.width = p2.pos + '%';
 
-            [20, 40, 60, 80, 100].forEach(val => {
+            // Show timeline milestones strictly based on Ownership
+            [10, 20, 30, 40, 50, 60, 70, 80, 90].forEach(val => {
                 let b1 = document.getElementById('p1_badge_' + val);
-                if(b1) { if(p1.pos >= val) b1.classList.add('active'); else b1.classList.remove('active'); }
                 let b2 = document.getElementById('p2_badge_' + val);
-                if(b2) { if(p2.pos >= val) b2.classList.add('active'); else b2.classList.remove('active'); }
+                
+                if (milestoneState[val] === 1) {
+                    if(b1){ b1.classList.add('active'); b1.style.opacity = '1'; b1.style.display = 'block'; }
+                    if(b2){ b2.style.display = 'none'; } // Hide from P2
+                } else if (milestoneState[val] === 2) {
+                    if(b1){ b1.style.display = 'none'; } // Hide from P1
+                    if(b2){ b2.classList.add('active'); b2.style.opacity = '1'; b2.style.display = 'block'; }
+                } else {
+                    // Unclaimed
+                    if(b1){ b1.classList.remove('active'); b1.style.opacity = '0.3'; b1.style.display = 'block'; }
+                    if(b2){ b2.classList.remove('active'); b2.style.opacity = '0.3'; b2.style.display = 'block'; }
+                }
             });
+            
+            // 100 is just a visual finish line for both
+            if(p1.pos === 100) { let b = document.getElementById('p1_badge_100'); if(b) {b.classList.add('active'); b.style.opacity='1';} }
+            if(p2.pos === 100) { let b = document.getElementById('p2_badge_100'); if(b) {b.classList.add('active'); b.style.opacity='1';} }
 
             document.getElementById('p1Card').classList.toggle('active-turn', currentPlayerIndex === 0);
             document.getElementById('p2Card').classList.toggle('active-turn', currentPlayerIndex === 1);
@@ -570,13 +564,9 @@
 
             let scene = document.getElementById('diceScene');
             if(gameMode === 1 && currentPlayerIndex === 1) {
-                scene.classList.remove('dice-glow');
-                scene.style.pointerEvents = 'none';
-                scene.style.opacity = '0.7';
+                scene.classList.remove('dice-glow'); scene.style.pointerEvents = 'none'; scene.style.opacity = '0.7';
             } else {
-                scene.classList.add('dice-glow');
-                scene.style.pointerEvents = 'auto';
-                scene.style.opacity = '1';
+                scene.classList.add('dice-glow'); scene.style.pointerEvents = 'auto'; scene.style.opacity = '1';
             }
         }
 
@@ -588,54 +578,43 @@
 
         function rollDice() {
             isMoving = true; let p = players[currentPlayerIndex]; SFX.roll();
-           
             document.getElementById('diceScene').classList.remove('dice-glow');
-           
+            
             let steps = Math.floor(Math.random() * 6) + 1;
             let cube = document.getElementById('diceCube');
             let rots = ['rotateY(0deg)', 'rotateX(-90deg)', 'rotateY(-90deg)', 'rotateY(90deg)', 'rotateX(90deg)', 'rotateY(180deg)'];
-           
             cube.style.transform = `rotateX(${Math.random()*1440 + 720}deg) rotateY(${Math.random()*1440 + 720}deg)`;
-           
+            
             setTimeout(() => {
                 cube.style.transform = `translateZ(-30px) ${rots[steps-1]}`;
                 let disp = document.getElementById('countingDisplay');
                 disp.innerText = toBnNum(steps);
                 disp.style.opacity = 1;
-               
-                setTimeout(() => {
-                    disp.style.opacity = 0;
-                    movePlayer(p, steps);
-                }, 800);
-            }, 1200);
+                
+                setTimeout(() => { disp.style.opacity = 0; movePlayer(p, steps); }, 800);
+            }, 1200); 
         }
 
         function movePlayer(player, steps) {
-            let startPos = player.pos;
-           
-            // Exact roll logic for 100
-            if(startPos + steps > 100) {
+            if(player.pos + steps > 100) {
                 let disp = document.getElementById('countingDisplay');
                 disp.innerText = "সঠিক সংখ্যা চাই!";
-                disp.classList.remove('text-green-600');
-                disp.classList.add('text-red-500');
+                disp.classList.remove('text-green-600'); disp.classList.add('text-red-500');
                 disp.style.opacity = 1;
-               
                 setTimeout(() => {
-                    disp.style.opacity = 0;
-                    disp.classList.add('text-green-600');
-                    disp.classList.remove('text-red-500');
-                    endTurn();
+                    disp.style.opacity = 0; 
+                    disp.classList.add('text-green-600'); disp.classList.remove('text-red-500');
+                    endTurn(); 
                 }, 1200);
                 return;
             }
 
-            let currentStep = 0;
+            let currentStep = 0; 
             let intv = setInterval(() => {
                 currentStep++; player.pos++;
                 let t = getCellPos(player.pos);
                 player.targetX = t.x; player.targetY = t.y;
-                SFX.step(); updateUI();
+                SFX.step(); updateUI(); 
                 if(currentStep >= steps) {
                     clearInterval(intv); setTimeout(() => checkTileEffect(player), 300);
                 }
@@ -643,46 +622,99 @@
         }
 
         function checkTileEffect(player) {
-            let pos = player.pos; let effect = snakes[pos] || ladders[pos];
+            let effect = snakes[player.pos] || ladders[player.pos];
             if(effect) {
                 showKnowledgeCard(effect.msg, effect.fact, effect.type, () => {
                     player.pos = effect.end;
                     let t = getCellPos(effect.end);
                     player.targetX = t.x; player.targetY = t.y;
-                   
-                    if(effect.type === 'destroy') {
-                        SFX.fall();
-                        player.goalsShowed = player.goalsShowed.filter(m => m <= player.pos);
-                    } else SFX.climb();
-                   
-                    updateUI(); setTimeout(() => checkMilestone(player), 800);
+                    
+                    if(effect.type === 'destroy') SFX.fall();
+                    else SFX.climb();
+                    
+                    updateUI(); setTimeout(() => evaluateMilestonesEndTurn(player), 800);
                 });
-            } else checkMilestone(player);
+            } else evaluateMilestonesEndTurn(player);
         }
 
-        function checkMilestone(player) {
-            let ms = [20, 40, 60, 80]; let achieved = [];
-            for(let m of ms) {
-                if(player.pos >= m && !player.goalsShowed.includes(m)) {
-                    player.goalsShowed.push(m); achieved.push(ekwGoals[m]);
+        // Global Evaluation for First Come First Serve
+        function evaluateMilestonesEndTurn(player) {
+            let newlyClaimed = [];
+            let newlyLost = [];
+
+            // 1. Check for Losses (Player dropped below a milestone they owned)
+            for(let m in milestoneState) {
+                let val = parseInt(m);
+                if(milestoneState[val] === player.id && player.pos < val) {
+                    milestoneState[val] = null; // Free it up!
+                    newlyLost.push(ekwGoals[val]);
                 }
             }
-            if(achieved.length > 0) showMilestoneCard(achieved, player, () => checkWinCondition(player));
-            else checkWinCondition(player);
+
+            // 2. Check for Claims (Player reached/passed an UNCLAIMED milestone)
+            for(let m in milestoneState) {
+                let val = parseInt(m);
+                if(player.pos >= val && milestoneState[val] === null) {
+                    milestoneState[val] = player.id; // Claim it!
+                    newlyClaimed.push(ekwGoals[val]);
+                }
+            }
+
+            updateUI(); // Reflect ownership instantly
+
+            // Sequence Popups: Loss -> Claim -> End Turn
+            let processClaims = () => {
+                if (newlyClaimed.length > 0) showMilestoneModal(newlyClaimed, player, 'claim', () => checkWinCondition(player));
+                else checkWinCondition(player);
+            };
+
+            if (newlyLost.length > 0) showMilestoneModal(newlyLost, player, 'loss', processClaims);
+            else processClaims();
         }
 
-        function showMilestoneCard(goals, player, callback) {
+        function showMilestoneModal(goals, player, type, callback) {
             let card = document.getElementById('milestoneModal');
-            document.getElementById('milestonePlayerName').innerHTML = `<span class="text-2xl">${player.icon}</span> ${player.name}`;
-           
-            document.getElementById('milestoneList').innerHTML = goals.map(g => `
-                <div class="bg-white p-3 rounded-xl shadow-sm border-l-4 border-yellow-400 flex gap-3 items-start">
-                    <div class="text-3xl">${g.icon}</div>
-                    <div><h4 class="font-bold text-green-800 text-sm">${g.title}</h4><p class="text-xs text-gray-600 mt-1">${g.text}</p></div>
-                </div>
-            `).join('');
+            let box = document.getElementById('msModalBox');
+            let iconBox = document.getElementById('msIconBox');
+            
+            box.className = "glass-panel p-5 w-full max-w-sm text-center popup-anim border-t-8 shadow-2xl bg-white";
+            
+            if(type === 'loss') {
+                SFX.loss();
+                box.classList.add('border-red-500');
+                iconBox.className = "rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-2 shadow-inner bg-red-100";
+                document.getElementById('msMainIcon').innerText = '⚠️';
+                document.getElementById('msTitleText').innerText = "মাইলস্টোন হাতছাড়া!";
+                document.getElementById('msTitleText').className = "text-xl font-black mb-3 text-red-600";
+                document.getElementById('msPlayerName').innerHTML = `<span class="text-2xl">${player.icon}</span> ${player.name}`;
+                document.getElementById('msBtn').className = "w-full text-white font-bold py-2 rounded-xl shadow-lg hover:scale-105 transition text-base bg-gradient-to-r from-red-500 to-red-600";
+                
+                document.getElementById('milestoneList').innerHTML = goals.map(g => `
+                    <div class="bg-red-50 p-3 rounded-xl shadow-sm border-l-4 border-red-400 flex gap-3 items-center">
+                        <div class="text-3xl grayscale">${g.icon}</div>
+                        <div><h4 class="font-bold text-red-800 text-sm">${g.title}</h4></div>
+                    </div>
+                `).join('');
 
-            SFX.goal(); card.classList.remove('hidden');
+            } else {
+                SFX.goal();
+                box.classList.add('border-yellow-500', 'bg-gradient-to-b', 'from-yellow-50', 'to-white');
+                iconBox.className = "rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-2 shadow-inner bg-yellow-100";
+                document.getElementById('msMainIcon').innerText = '🏆';
+                document.getElementById('msTitleText').innerText = "নতুন লক্ষ্য অর্জিত!";
+                document.getElementById('msTitleText').className = "text-xl font-black mb-3 text-yellow-600";
+                document.getElementById('msPlayerName').innerHTML = `<span class="text-2xl">${player.icon}</span> ${player.name} অর্জন করেছেন!`;
+                document.getElementById('msBtn').className = "w-full text-white font-bold py-2 rounded-xl shadow-lg hover:scale-105 transition text-base bg-gradient-to-r from-yellow-500 to-orange-500";
+                
+                document.getElementById('milestoneList').innerHTML = goals.map(g => `
+                    <div class="bg-white p-3 rounded-xl shadow-sm border-l-4 border-yellow-400 flex gap-3 items-start">
+                        <div class="text-3xl">${g.icon}</div>
+                        <div><h4 class="font-bold text-green-800 text-sm">${g.title}</h4><p class="text-xs text-gray-600 mt-1">${g.text}</p></div>
+                    </div>
+                `).join('');
+            }
+
+            card.classList.remove('hidden');
             window.currentMilestoneCallback = () => { card.classList.add('hidden'); callback(); };
         }
         function closeMilestoneCard() {
@@ -692,24 +724,22 @@
         function showKnowledgeCard(msg, fact, type, callback) {
             let card = document.getElementById('knowledgeCard');
             let box = document.getElementById('kcBox'); let title = document.getElementById('kcTitle');
-           
+            
             box.classList.remove('border-red-500', 'border-green-500');
             document.getElementById('knowledgeText').innerHTML = `<strong class="text-base text-gray-800">${msg}</strong><br><br><span class="text-xs text-gray-600">${fact}</span>`;
-           
+            
             if(type === 'destroy') {
-                box.classList.add('border-red-500');
-                document.getElementById('kcBgIcon').innerText = '⚠️';
+                box.classList.add('border-red-500'); document.getElementById('kcBgIcon').innerText = '⚠️';
                 title.innerHTML = '<span class="text-red-500">⚠️</span> সূচক পতন!';
                 title.className = "text-lg font-black text-red-600 mb-2 flex items-center justify-center gap-2";
                 document.getElementById('pollutionOverlay').style.opacity = '1';
                 setTimeout(()=>document.getElementById('pollutionOverlay').style.opacity = '0', 1000);
             } else {
-                box.classList.add('border-green-500');
-                document.getElementById('kcBgIcon').innerText = '🌿';
+                box.classList.add('border-green-500'); document.getElementById('kcBgIcon').innerText = '🌿';
                 title.innerHTML = '<span class="text-green-500">🌿</span> দারুণ কাজ!';
                 title.className = "text-lg font-black text-green-600 mb-2 flex items-center justify-center gap-2";
             }
-           
+            
             card.classList.remove('hidden');
             window.currentCardCallback = () => { card.classList.add('hidden'); callback(); };
         }
@@ -720,13 +750,22 @@
         function checkWinCondition(player) {
             if(player.pos === 100) {
                 isGameOver = true; SFX.win();
+                
+                // Calculate Badges won based on Milestone ownership
+                let count = Object.values(milestoneState).filter(val => val === player.id).length;
+                let titleName = "";
+                if(count >= 8) titleName = "👑 পূর্ব কলকাতা জলাভূমির মহারক্ষক 🌿🏆";
+                else if(count >= 6) titleName = "🥇 জলাভূমির নায়ক";
+                else if(count >= 4) titleName = "🥈 প্রকৃতির অভিভাবক";
+                else if(count >= 2) titleName = "নবীন জলাভূমি রক্ষক";
+                else titleName = "🌱 পরিবেশ বন্ধু";
+
+                document.getElementById('winBadgeTitle').innerText = titleName;
+                document.getElementById('winBadgeDesc').innerText = `আপনি ${toBnNum(count)}টি মাইলস্টোন ধরে রেখেছেন!`;
+                
                 let end = document.getElementById('cinematicEnd');
-                end.classList.remove('hidden');
-                end.classList.add('flex');
-                setTimeout(() => {
-                    end.classList.remove('opacity-0');
-                    end.classList.add('opacity-100');
-                }, 100);
+                end.classList.remove('hidden'); end.classList.add('flex');
+                setTimeout(() => { end.classList.remove('opacity-0'); end.classList.add('opacity-100'); }, 100);
                 document.getElementById('winnerIcon').innerText = player.icon;
                 document.getElementById('winnerName').innerText = player.name;
             } else endTurn();
@@ -739,16 +778,10 @@
         }
 
         function gameLoop() {
-            players.forEach(p => {
-                p.x += (p.targetX - p.x) * 0.15; p.y += (p.targetY - p.y) * 0.15;
-            });
+            players.forEach(p => { p.x += (p.targetX - p.x) * 0.15; p.y += (p.targetY - p.y) * 0.15; });
             drawBoard(); requestAnimationFrame(gameLoop);
         }
         drawBoard();
     </script>
 </body>
 </html>
-
-
-```
- 
